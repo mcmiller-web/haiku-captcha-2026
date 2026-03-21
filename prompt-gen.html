@@ -8,8 +8,8 @@
 </head>
 <body id="prompt-page">
     <main class="prompt-overlay">
-        <h1 class="page-titles">You'll start with a prompt.</h1>
-        <p id="content-font">Click this button to choose a topic for your haiku</p>
+        <h1 class="page-titles" style="max-width: 300px;">You'll start with a prompt.</h1>
+        <p id="content-font" style="max-width: 280px;">Click this button to choose a topic for your haiku</p>
 
         <!--PROMPT GENERATION BUTTON-->
         <button id="generate-prompt-btn" class="image-btn" type="button" aria-label="Generate a haiku prompt">
@@ -18,7 +18,9 @@
         <br>
         <br>
         <p id="content-font">Haiku Prompt: <span id="haiku-topic"></span></p>
-        <button id="new-prompt-btn" type="button">Choose a different prompt</button>
+        <button id="new-prompt-btn" class="image-btn" type="button" aria-label="Choose a different prompt">
+            <img src="img/start-button.png" alt="Choose a different prompt" width="200px">
+        </button>
 
         <div class="bottom-right-section">
             <h2 class="page-titles">Now it's time to write your haiku</h2>
