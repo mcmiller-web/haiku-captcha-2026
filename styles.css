@@ -1,7 +1,71 @@
+@font-face {
+    font-family: prime-title;
+    src: url(fonts/TitanOne-Regular.ttf);
+}
+
+@font-face {
+    font-family: content-title;
+    src: url(fonts/LexendDeca-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: content-title;
+    src: url(fonts/);
+}
+
+
+
 #index {
-    background: linear-gradient(#0AE3E6)
+    
+}
+
+.page-titles {
+    font-family: prime-title;
+}
+
+#home-title {
+    font-size: 60px;
+}
+
+#content-font {
+    font-family: content-title;
 }
 
 #haiku-end {
     background: linear-gradient(#C2FBFF);
+}
+
+#prompt-page {
+    margin: 0;
+    min-height: 100vh;
+    background-image: url("img/prompt-bckg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.prompt-overlay {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 20px;
+}
+
+.image-btn {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.bottom-right-section {
+    margin-top: 40px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
 }

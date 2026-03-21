@@ -6,22 +6,55 @@
         <link rel="stylesheet" href="styles.css">
 
 </head>
-<body>
-    <h1>You'll start with a prompt.</h1>
-    <p> Click this button to choose a topic for your haiku</p>
+<body id="prompt-page">
+    <main class="prompt-overlay">
+        <h1 class="page-titles">You'll start with a prompt.</h1>
+        <p id="content-font">Click this button to choose a topic for your haiku</p>
 
-    <!--PROMPT GENERATION BUTTON-->
-    <img src="img/place-holder-img-replace">
+        <!--PROMPT GENERATION BUTTON-->
+        <button id="generate-prompt-btn" class="image-btn" type="button" aria-label="Generate a haiku prompt">
+            <img src="img/start-button.png" alt="Generate prompt" width="160px">
+        </button>
+        <br>
+        <br>
+        <p id="content-font">Haiku Prompt: <span id="haiku-topic"></span></p>
+        <button id="new-prompt-btn" type="button">Choose a different prompt</button>
 
-    <p> Haiku Prompt:</p>
+        <div class="bottom-right-section">
+            <h2 class="page-titles">Now it's time to write your haiku</h2>
 
-    <h2>Now it's time to write your haiku</h2>
+            <!--MOVE TO TEXT ENTRY BUTTON-->
+            <a href="haiku-entry.html">
+                <img src="img/start-button.png" alt="Go to haiku entry page" width="200px">
+            </a>
+        </div>
+    </main>
 
-    <!--MOVE TO TEXT ENTRY BUTTON-->
-    <a href="haiku-entry.html">
-        <img src="img/place-holder-img-replace">
-    </a>
+    <script>
+        const topics = [
+            "College Classes",
+            "Having No Flexi",
+            "The Art of Nothing",
+            "Relaxing",
+            "Coffee Dependency",
+            "Finals Week",
+            "Group Projects",
+            "Laundry Day",
+            "San Francisco",
+            "Food"
+        ];
 
+        const topicDisplay = document.getElementById("haiku-topic");
+        const generateButton = document.getElementById("generate-prompt-btn");
+        const newPromptButton = document.getElementById("new-prompt-btn");
 
+        function generateTopic() {
+            const randomIndex = Math.floor(Math.random() * topics.length);
+            topicDisplay.textContent = topics[randomIndex];
+        }
+
+        generateButton.addEventListener("click", generateTopic);
+        newPromptButton.addEventListener("click", generateTopic);
+    </script>
 </body>
 </html>
