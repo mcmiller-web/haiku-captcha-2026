@@ -8,27 +8,30 @@
 </head>
 <body id="haiku-entry-page">
     <main class="prompt-overlay haiku-entry-main">
-        <h1 class="page-titles" id="haiku-entry-heading">Haiku Topic:</h1>
-        <p class="page-titles" id="selected-topic" class="content-font haiku-entry-narrow">(No prompt yet; generate from topic page)</p>
+        <div class="haiku-entry-content">
+            <h1 class="page-titles haiku-topic-line" id="haiku-entry-heading">
+                <span class="haiku-topic-label">Your Haiku Topic:</span>
+                <span id="selected-topic" class="content-font haiku-topic-value">(No prompt yet; generate from topic page)</span>
+            </h1>
 
-        <h3 class="page-titles">Instructions:</h3>
-        <ol class="content-text haiku-entry-narrow">
-            <li>Write your haiku in the text box below.</li>
-            <li>Make sure your haiku is 3 lines with syllable counts 5-7-5.</li>
-            <li>Click submit when you’re finished.</li>
-        </ol>
+            <h3 class="page-titles">Instructions:</h3>
+            <ol class="content-text haiku-entry-narrow">
+                <li>Write your haiku in the text box below.</li>
+                <li>Make sure your haiku is 3 lines with syllable counts 5-7-5.</li>
+                <li>Click submit when you’re finished.</li>
+            </ol>
 
-        <label for="haiku-text" class="content-font">Your Haiku</label>
-        <textarea id="haiku-text" class="haiku-textarea" rows="12" placeholder="Line 1 (5 syllables)&#10;Line 2 (7 syllables)&#10;Line 3 (5 syllables)"></textarea>
+            <label for="haiku-text" class="content-font">Your Haiku</label>
+            <textarea id="haiku-text" class="haiku-textarea" rows="12" placeholder="Line 1 (5 syllables)&#10;Line 2 (7 syllables)&#10;Line 3 (5 syllables)"></textarea>
+        </div>
 
-        <div class="bottom-right-section haiku-entry-bottom-right">
-            <img src="img/goat-wcomment.png" alt="Goat" class="goat-img">
+        <aside class="haiku-entry-aside" aria-label="Submit your haiku">
+            <img src="img/goat-wcomment.png" alt="Goat" class="goat-img haiku-entry-goat">
 
             <button type="button" id="submit-haiku" class="image-btn" aria-label="Submit haiku">
                 <img src="img/start-button.png" alt="" width="200px">
             </button>
-            <!-- <img src="img/goat-wcomment.png" alt="Goat" class="goat-img"> -->
-        </div>
+        </aside>
     </main>
 
     <script>

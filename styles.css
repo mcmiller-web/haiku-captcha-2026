@@ -83,11 +83,57 @@
 
 #haiku-entry-heading {
     font-size: 50px;
-    max-width: 510px;
+    line-height: 1.15;
+    max-width: min(100%, 42rem);
+    margin: 0;
+}
+
+.haiku-topic-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35em 0.5em;
+}
+
+.haiku-topic-line .haiku-topic-value {
+    font-size: 0.42em;
+    font-weight: normal;
 }
 
 .haiku-entry-narrow {
     max-width: 780px;
+}
+
+/* Haiku entry: grid keeps text in its own column so the goat + button never overlap */
+.haiku-entry-main.prompt-overlay {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    align-content: center;
+    column-gap: clamp(1.25rem, 5vw, 3rem);
+    row-gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.haiku-entry-content {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+    min-width: 0;
+}
+
+.haiku-entry-aside {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+    justify-self: end;
+    flex-shrink: 0;
 }
 
 .haiku-entry-main .haiku-textarea {
@@ -95,14 +141,43 @@
 }
 
 .goat-img {
-    max-width: 200px;
-    width: 100%;
+    max-width: 500px;
     height: auto;
     display: block;
 }
 
-.haiku-entry-bottom-right .goat-img {
-    max-width: 680px;
+/* Goat beside text: cap width so it always fits the reserved column */
+.haiku-entry-goat {
+    max-width: min(240px, 42vw);
+}
+
+.haiku-entry-aside .image-btn img {
+    max-width: min(200px, 40vw);
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 700px) {
+    .haiku-entry-main.prompt-overlay {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    .haiku-entry-aside {
+        grid-column: 1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: 100%;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        margin-top: 0.25rem;
+    }
+
+    .haiku-entry-goat {
+        max-width: min(200px, 55vw);
+    }
 }
 
 .haiku-textarea {
