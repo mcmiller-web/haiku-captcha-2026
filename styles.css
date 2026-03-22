@@ -27,31 +27,41 @@
     font-size: 60px;
 }
 
-#content-font {
+#prompt-title {
+    font-size: 50px;
+}
+
+.content-font {
     font-family: content-title;
+}
+
+#new-prompt {
+    font-size: 9px;
 }
 
 #haiku-end {
     background: linear-gradient(#C2FBFF);
 }
 
-#prompt-page {
+#prompt-page,
+#haiku-entry-page {
     margin: 0;
     min-height: 100vh;
-    background-image: url("img/prompt-bckg.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .prompt-overlay {
+    position: relative;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 13px;
-    padding: 20px;
+    padding: 30px;
+    box-sizing: border-box;
 }
 
 .image-btn {
@@ -62,10 +72,60 @@
 }
 
 .bottom-right-section {
-    margin-top: 40px;
-    margin-left: auto;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 13px;
+}
+
+#haiku-entry-heading {
+    font-size: 50px;
+    max-width: 510px;
+}
+
+.haiku-entry-narrow {
+    max-width: 780px;
+}
+
+.haiku-entry-main .haiku-textarea {
+    margin-bottom: 0;
+}
+
+.goat-img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.haiku-entry-bottom-right .goat-img {
+    max-width: 180px;
+}
+
+.haiku-textarea {
+    width: 100%;
+    max-width: 280px;
+    min-height: 280px;
+    resize: vertical;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: content-title;
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.9);
+}
+
+.content-text {
+    font-family: content-title;
+}
+
+#wrong-haiku-page .wrong-haiku-main {
+    padding: 24px 24px 24px 10px;
+    max-width: 40rem;
 }

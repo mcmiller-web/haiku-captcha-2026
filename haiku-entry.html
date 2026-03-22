@@ -6,19 +6,74 @@
         <link rel="stylesheet" href="styles.css">
 
 </head>
-<body>
-    <h1 class="page-titles">Haiku Topic:</h1>
+<body id="haiku-entry-page">
+    <main class="prompt-overlay haiku-entry-main">
+        <h1 class="page-titles" id="haiku-entry-heading">Haiku Topic:</h1>
+        <p class="page-titles" id="selected-topic" class="content-font haiku-entry-narrow">(No prompt yet; generate from topic page)</p>
 
-    <h3 class="page-titles">Instructions:</h3>
-    <ol id="content-font">
-        <li>Write your haiku in the text box below.</li>
-        <li>Press the submit button!</li>
-    </ol>
+        <h3 class="page-titles">Instructions:</h3>
+        <ol class="content-text haiku-entry-narrow">
+            <li>Write your haiku in the text box below.</li>
+            <li>Make sure your haiku is 3 lines with syllable counts 5-7-5.</li>
+            <li>Click submit when you’re finished.</li>
+        </ol>
 
-    <!--HAIKU SUBMIT BUTTON-->
-    <a href="haiku-end.html">
-        <img src="img/start-button.png" alt="Submit haiku" width="200px">
-    </a>
+        <label for="haiku-text" class="content-font">Your Haiku</label>
+        <textarea id="haiku-text" class="haiku-textarea" rows="12" placeholder="Line 1 (5 syllables)&#10;Line 2 (7 syllables)&#10;Line 3 (5 syllables)"></textarea>
 
+        <div class="bottom-right-section haiku-entry-bottom-right">
+            <button type="button" id="submit-haiku" class="image-btn" aria-label="Submit haiku">
+                <img src="img/start-button.png" alt="" width="200px">
+            </button>
+            <img src="img/goat.png" alt="Goat" class="goat-img">
+        </div>
+    </main>
+
+    <script>
+        function countSyllables(word) {
+            const w = word.toLowerCase().replace(/[^a-z']/g, '');
+            if (!w) return 0;
+            if (w.length <= 3) return 1;
+            const syl = w
+                .replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '')
+                .replace(/^y/, '')
+                .match(/[aeiouy]{1,2}/g);
+            return Math.max(1, syl ? syl.length : 1);
+        }
+
+        function checkHaiku(text) {
+            const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+            if (lines.length !== 3) return { valid: false, message: 'Haiku needs exactly 3 lines.' };
+
+            const expected = [5, 7, 5];
+            const actual = lines.map(line => {
+                const words = line.split(/\s+/).filter(Boolean);
+                return words.reduce((sum, word) => sum + countSyllables(word), 0);
+            });
+
+            const errors = actual.map((count, i) => count === expected[i] ? null : `Line ${i + 1}: ${count} syllables (expected ${expected[i]})`).filter(Boolean);
+            if (errors.length) {
+                return { valid: false, message: errors.join(' | ') };
+            }
+            return { valid: true, message: 'Valid haiku! 5-7-5 count achieved.' };
+        }
+
+        const selectedTopic = document.getElementById('selected-topic');
+        const haikuText = document.getElementById('haiku-text');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTopic = localStorage.getItem('haikuTopic');
+            selectedTopic.textContent = savedTopic ? savedTopic : '(No prompt yet; go back and generate one)';
+        });
+
+        document.getElementById('submit-haiku').addEventListener('click', () => {
+            const result = checkHaiku(haikuText.value);
+            if (result.valid) {
+                window.location.href = 'haiku-end.html';
+            } else {
+                window.location.href = 'wrong-haiku.html';
+            }
+        });
+    </script>
 </body>
 </html>
