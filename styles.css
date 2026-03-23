@@ -45,7 +45,6 @@
     background: linear-gradient(#C2FBFF, #a8e8f0);
 }
 
-/* Floating community haikus (behind main content) */
 .floating-poems-root {
     position: fixed;
     inset: 0;
@@ -101,7 +100,7 @@
 
 #prompt-page,
 #haiku-entry-page {
-    background-image: url('img/prompt-fill.png');
+    background-image: url('img/prompt-impv-bckg.png');
     min-height: 100vh;
     background-size: cover;
     background-position: center;
