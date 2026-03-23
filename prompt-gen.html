@@ -8,19 +8,18 @@
 </head>
 <body id="prompt-page">
     <main class="prompt-overlay">
-        <h1 class="page-titles" id="prompt-title" style="max-width: 310px;">You'll start with a prompt.</h1>
+        <h1 class="page-titles" id="prompt-title" style="max-width: 510px;">You'll start with a prompt.</h1>
         <p class="content-font" style="max-width: 280px;">Click this button to choose a topic for your haiku</p>
 
         <!--PROMPT GENERATION BUTTON-->
         <button id="generate-prompt-btn" class="image-btn" type="button" aria-label="Generate a haiku prompt">
-            <img src="img/start-button.png" alt="Generate prompt" width="160px">
+            <img src="img/generate-button.png" alt="Generate prompt" width="210px">
         </button>
         <br>
-        <br>
-        <p class="content-font">Haiku Prompt: <span id="haiku-topic"></span></p>
+        <p class="content-font" style="font-size: 30px;">Haiku Prompt: <span id="haiku-topic"></span></p>
         <p class="content-font" id="new-prompt" style="max-width: 200px;">If you don't like this prompt, click the button below to generate a new one.</p>
         <button id="new-prompt-btn" class="image-btn" type="button" aria-label="Choose a different prompt">
-            <img src="img/start-button.png" alt="Choose a different prompt" width="200px">
+            <img src="img/new-prompt-button.png" alt="Choose a different prompt" width="180px">
         </button>
 
         <div class="bottom-right-section">
@@ -28,10 +27,15 @@
 
             <!--MOVE TO TEXT ENTRY BUTTON-->
             <a id="to-entry-link" href="haiku-entry.html">
-                <img src="img/start-button.png" alt="Go to haiku entry page" width="200px">
+                <img src="img/write-haiku-button.png" alt="Go to haiku entry page" width="200px">
             </a>
         </div>
     </main>
+        <br>
+        <br>
+        <a href="index.html" style="padding: 30px;">
+            <img src="img/back-button.png" alt="Go to haiku entry page" width="100px">
+        </a>
 
     <script>
         const topics = [
