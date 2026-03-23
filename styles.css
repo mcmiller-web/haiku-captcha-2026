@@ -101,8 +101,7 @@
 
 #prompt-page,
 #haiku-entry-page {
-    background-image: url('img/prompt-bckg.png');
-    margin: 0;
+    background-image: url('img/prompt-fill.png');
     min-height: 100vh;
     background-size: cover;
     background-position: center;
