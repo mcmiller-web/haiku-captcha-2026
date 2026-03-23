@@ -159,7 +159,7 @@
     max-width: 780px;
 }
 
-/* Haiku entry: grid keeps text in its own column so the goat + button never overlap */
+/* This styling keeps the goat and submit button from overlapping on the entry page*/
 .haiku-entry-main.prompt-overlay {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -196,15 +196,9 @@
 }
 
 .goat-img {
-    max-width: 200px;
-    width: 100%;
+    width: 550px;
     height: auto;
     display: block;
-}
-
-/* Goat beside text: cap width so it always fits the reserved column */
-.haiku-entry-goat {
-    max-width: min(240px, 42vw);
 }
 
 .haiku-entry-aside .image-btn img {
