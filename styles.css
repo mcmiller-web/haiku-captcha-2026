@@ -25,6 +25,11 @@
     font-size: 60px;
 }
 
+#space-specs {
+    font-size: 25px;
+    margin-top: 45px;
+    margin-bottom: 1px;}
+
 #prompt-title {
     font-size: 50px;
 }
@@ -128,13 +133,11 @@
 
 .bottom-right-section {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 170px;
+    right: 100px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 13px;
-}
+    align-items: center;}
 
 #haiku-entry-heading {
     font-size: 50px;
@@ -151,8 +154,9 @@
 }
 
 .haiku-topic-line .haiku-topic-value {
-    font-size: 0.42em;
-    font-weight: normal;
+    font-family: prime-title;
+    font-size: 45px;
+    color: rgb(23, 120, 248);
 }
 
 .haiku-entry-narrow {
