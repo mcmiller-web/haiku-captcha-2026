@@ -59,7 +59,7 @@
     font-size: clamp(0.75rem, 1.5vw, 0.95rem);
     line-height: 1.45;
     white-space: pre-line;
-    color: rgba(30, 50, 60, 1);
+    color: #000080;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
     transform-origin: center center;
     animation-name: float-drift;
