@@ -42,6 +42,14 @@
     font-size: 9px;
 }
 
+#haiku-topic {
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 #haiku-end {
     position: relative;
     margin: 0;
@@ -157,6 +165,10 @@
     font-family: prime-title;
     font-size: 45px;
     color: rgb(23, 120, 248);
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .haiku-entry-narrow {
@@ -257,4 +269,50 @@
 #wrong-haiku-page .wrong-haiku-main {
     padding: 24px 24px 24px 10px;
     max-width: 40rem;
+}
+
+#wrong-haiku {
+    background-color: #FFFF00;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.wrong-haiku-main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+.goat-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.glitch-goat {
+    display: block;
+    animation: glitch-move 3s infinite alternate ease-in-out,
+               glitch-color 1.5s infinite linear;
+}
+
+@keyframes glitch-move {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(-2px, 2px) rotate(-1deg); }
+    50% { transform: translate(3px, -2px) rotate(1deg); }
+    75% { transform: translate(-3px, 1px) rotate(-0.8deg); }
+    100% { transform: translate(2px, -1px) rotate(0.5deg); }
+}
+
+@keyframes glitch-color {
+    0% { filter: none; }
+    30% { filter: hue-rotate(20deg) saturate(1.2); }
+    60% { filter: hue-rotate(340deg) saturate(1.4); }
+    100% { filter: none; }
 }
