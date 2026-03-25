@@ -23,7 +23,7 @@
     <script>
         (function () {
             const STORAGE_KEY = 'haikuSubmissions';
-            const MAX_VISIBLE = 6;
+            const MAX_VISIBLE = 7;
             const ROTATE_MS = 22000;
 
             function loadPoems() {
@@ -49,7 +49,7 @@
                 return a;
             }
 
-            function pickSix(poems) {
+            function pickVisible(poems) {
                 if (poems.length <= MAX_VISIBLE) return poems.map((p) => p.text.trim());
                 return shuffle(poems)
                     .slice(0, MAX_VISIBLE)
@@ -58,13 +58,58 @@
 
             function renderFloating(root, texts) {
                 root.innerHTML = '';
-                texts.forEach((text, i) => {
+                const placed = [];
+
+                function approximateRadiusPercent(text) {
+                    const len = (text || '').trim().length;
+                    // Radius estimate so we can prevent initial overlaps.
+                    // Typical 3-line haikus will land around ~7-12.
+                    const scale = Math.min(len, 90) / 90;
+                    return 7 + scale * 5;
+                }
+
+                texts.forEach((text) => {
                     const el = document.createElement('div');
                     el.className = 'floating-poem';
                     el.textContent = text;
 
-                    const left = 5 + ((i * 17 + Math.random() * 12) % 78);
-                    const top = 8 + ((i * 23 + Math.random() * 15) % 72);
+                    // Place poems outside a "bubble" around the center of the screen.
+                    // Center is (50, 50) in percent coordinates; bubble radius ~18%.
+                    const centerX = 50;
+                    const centerY = 50;
+                    const bubbleRadius = 18;
+
+                    const radius = approximateRadiusPercent(text);
+                    let left = 8;
+                    let top = 10;
+
+                    for (let attempt = 0; attempt < 70; attempt++) {
+                        // Keep away from edges a bit so text doesn't get clipped.
+                        left = 8 + Math.random() * 84;  // 8-92%
+                        top = 6 + Math.random() * 88;   // 6-94%
+
+                        // Keep outside the center bubble (expanded by our poem size estimate).
+                        const dx = left - centerX;
+                        const dy = top - centerY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < (bubbleRadius + radius * 0.25)) continue;
+
+                        // Prevent overlap with previously placed poems.
+                        let overlaps = false;
+                        for (const p of placed) {
+                            const ddx = left - p.left;
+                            const ddy = top - p.top;
+                            const d = Math.sqrt(ddx * ddx + ddy * ddy);
+                            if (d < (radius + p.radius + 2.5)) {
+                                overlaps = true;
+                                break;
+                            }
+                        }
+                        if (overlaps) continue;
+
+                        break;
+                    }
+
                     el.style.left = left + '%';
                     el.style.top = top + '%';
 
@@ -73,9 +118,9 @@
                     el.style.animationDuration = duration + 's';
                     el.style.animationDelay = delay + 's';
 
-                    const opacity = 0.28 + Math.random() * 0.22;
-                    el.style.opacity = String(opacity);
+                    el.style.opacity = '1';
 
+                    placed.push({ left, top, radius });
                     root.appendChild(el);
                 });
             }
@@ -85,7 +130,7 @@
 
             function tick() {
                 pool = loadPoems();
-                const texts = pickSix(pool);
+                const texts = pickVisible(pool);
                 renderFloating(root, texts);
             }
 

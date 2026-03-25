@@ -15,9 +15,9 @@
             </h1>
 
             <h3 class="page-titles" id="space-specs">Instructions:</h3>
-            <ol class="content-text haiku-entry-narrow">
+            <ol class="content-text haiku-entry-narrow" style="max-width: 300px;">
                 <li>Write your haiku in the text box below.</li>
-                <li>Make sure your haiku is 3 lines with syllable counts 5-7-5.</li>
+                <li>Make sure your haiku is 3 lines (syllables can be approximate).</li>
             </ol>
             <br>
             <label for="haiku-text" class="content-font">Write your haiku in the box below:</label>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="haiku-entry-aside" aria-label="Submit your haiku">
-            <img src="img/new-goat-gen.png" alt="Goat" class="goat-img haiku-entry-goat" width="300px">
+            <img src="img/new-goat-gen.png" alt="Goat" class="goat-img haiku-entry-goat" width="320px">
 
             <button type="button" id="submit-haiku" class="image-btn" aria-label="Submit haiku">
                 <img src="img/submit-button.png" alt="" width="200px">
@@ -49,17 +49,22 @@
             const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
             if (lines.length !== 3) return { valid: false, message: 'Haiku needs exactly 3 lines.' };
 
-            const expected = [5, 7, 5];
             const actual = lines.map(line => {
                 const words = line.split(/\s+/).filter(Boolean);
                 return words.reduce((sum, word) => sum + countSyllables(word), 0);
             });
 
-            const errors = actual.map((count, i) => count === expected[i] ? null : `Line ${i + 1}: ${count} syllables (expected ${expected[i]})`).filter(Boolean);
-            if (errors.length) {
-                return { valid: false, message: errors.join(' | ') };
+            const totalSyllables = actual.reduce((sum, n) => sum + n, 0);
+            // Relaxed total: accept within +/- 3 of the ideal 17 syllables.
+            // This keeps per-line validation optional/lenient (we only reject on total).
+            const MIN_TOTAL = 14;
+            const MAX_TOTAL = 22;
+
+            if (totalSyllables < MIN_TOTAL || totalSyllables > MAX_TOTAL) {
+                return { valid: false, message: `Haiku total syllables should be between ${MIN_TOTAL} and ${MAX_TOTAL}.` };
             }
-            return { valid: true, message: 'Valid haiku! 5-7-5 count achieved.' };
+
+            return { valid: true, message: 'Haiku accepted (relaxed total syllable rule).' };
         }
 
         const selectedTopic = document.getElementById('selected-topic');

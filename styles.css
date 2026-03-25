@@ -13,9 +13,7 @@
     src: url(fonts/);
 }
 
-#index {
-    
-}
+
 
 .page-titles {
     font-family: prime-title;
@@ -24,11 +22,6 @@
 #home-title {
     font-size: 60px;
 }
-
-#space-specs {
-    font-size: 25px;
-    margin-top: 45px;
-    margin-bottom: 1px;}
 
 #prompt-title {
     font-size: 50px;
@@ -50,6 +43,7 @@
     background: linear-gradient(#C2FBFF, #a8e8f0);
 }
 
+/* Floating community haikus (behind main content) */
 .floating-poems-root {
     position: fixed;
     inset: 0;
@@ -60,13 +54,13 @@
 
 .floating-poem {
     position: absolute;
-    max-width: min(14rem, 38vw);
+    max-width: min(12rem, 30vw);
     font-family: content-title, system-ui, sans-serif;
-    font-size: clamp(0.8rem, 1.9vw, 1.05rem);
+    font-size: clamp(0.75rem, 1.5vw, 0.95rem);
     line-height: 1.45;
     white-space: pre-line;
-    color: rgba(30, 50, 60, 0.95);
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.85);
+    color: rgba(30, 50, 60, 1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
     transform-origin: center center;
     animation-name: float-drift;
     animation-timing-function: ease-in-out;
@@ -77,16 +71,16 @@
 
 @keyframes float-drift {
     0% {
-        transform: translate(0, 0) rotate(-1deg);
+        transform: translate(0, 0) rotate(-0.8deg);
     }
     33% {
-        transform: translate(2.5vw, -3vh) rotate(1.2deg);
+        transform: translate(1vw, -1.5vh) rotate(0.6deg);
     }
     66% {
-        transform: translate(-2vw, 2vh) rotate(-0.8deg);
+        transform: translate(-0.8vw, 1vh) rotate(-0.5deg);
     }
     100% {
-        transform: translate(1.5vw, 1vh) rotate(0.5deg);
+        transform: translate(0.8vw, 0.9vh) rotate(0.4deg);
     }
 }
 
@@ -98,14 +92,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
-    padding: 2rem 1.25rem;
-    box-sizing: border-box;
+    gap: 20px;
+}
+
+.content-font {
+    font-family: content-title;
+}
+
+#new-prompt {
+    font-size: 10px;
 }
 
 #prompt-page,
 #haiku-entry-page {
-    background-image: url('img/prompt-impv-bckg.png');
+    margin: 0;
     min-height: 100vh;
     background-size: cover;
     background-position: center;
@@ -133,11 +133,13 @@
 
 .bottom-right-section {
     position: absolute;
-    bottom: 170px;
-    right: 100px;
+    bottom: 20px;
+    right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;}
+    align-items: center;
+    gap: 13px;
+}
 
 #haiku-entry-heading {
     font-size: 50px;
@@ -154,16 +156,15 @@
 }
 
 .haiku-topic-line .haiku-topic-value {
-    font-family: prime-title;
-    font-size: 45px;
-    color: rgb(23, 120, 248);
+    font-size: 0.42em;
+    font-weight: normal;
 }
 
 .haiku-entry-narrow {
     max-width: 780px;
 }
 
-/* This styling keeps the goat and submit button from overlapping on the entry page*/
+/* Haiku entry: grid keeps text in its own column so the goat + button never overlap */
 .haiku-entry-main.prompt-overlay {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -200,9 +201,13 @@
 }
 
 .goat-img {
-    width: 550px;
+    max-width: 500px;
     height: auto;
     display: block;
+}
+
+.haiku-entry-goat {
+    max-width: 600px;
 }
 
 .haiku-entry-aside .image-btn img {
@@ -246,7 +251,6 @@
     line-height: 1.5;
     font-family: content-title;
     border-radius: 10px;
-    border: 2px solid rgba(0,0,0,0.2);
     background: rgba(255,255,255,0.9);
 }
 
@@ -254,7 +258,7 @@
     font-family: content-title;
 }
 
-#wrong-haiku-page .wrong-haiku-main {
+#wrong-haiku .wrong-haiku-main {
     padding: 24px 24px 24px 10px;
     max-width: 40rem;
 }
